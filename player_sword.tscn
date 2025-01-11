@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://kqo3dbwfl0f3"]
+
+[ext_resource type="Texture2D" uid="uid://cm1tfnb0jbh0j" path="res://graphics/player_sword.png" id="1_xis7c"]
+
+[sub_resource type="GDScript" id="GDScript_myrv2"]
+script/source = "extends StaticBody2D
+"
+
+[node name="PlayerSword" type="StaticBody2D"]
+position = Vector2(526, 605)
+scale = Vector2(1.01185, 1.00733)
+collision_layer = 4
+collision_mask = 2
+script = SubResource("GDScript_myrv2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 24)
+texture = ExtResource("1_xis7c")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 24)
+polygon = PackedVector2Array(-6, -24, -6, 24, 6, 24, 6, -24)

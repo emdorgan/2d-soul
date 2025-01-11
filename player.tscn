@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://1ymqq51h7ej5"]
+
+[ext_resource type="Texture2D" uid="uid://dqgvm8kr1otac" path="res://graphics/character.png" id="1_db7qh"]
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("1_db7qh")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-24, -24, -24, 24, 24, 24, 24, -24)
+
+[node name="SlashStartingPos" type="Marker2D" parent="."]
+position = Vector2(21, 20)

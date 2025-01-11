@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://1wn88jmbktnu"]
+
+[ext_resource type="Texture2D" uid="uid://svsyjfnkwsid" path="res://graphics/boss.png" id="1_nlay3"]
+
+[node name="Boss" type="Area2D"]
+collision_layer = 2
+collision_mask = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nlay3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-127, -127, -128, 127, 127, 128, 129, -128)
