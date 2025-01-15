@@ -24,7 +24,6 @@ position = Vector2(904, 223)
 
 [node name="PlayerSword" parent="." instance=ExtResource("4_vhqh4")]
 position = Vector2(537, 680)
-script = null
 
 [node name="Weapons" type="Node2D" parent="."]
 
@@ -48,4 +47,3 @@ value = 50.0
 show_percentage = false
 
 [connection signal="slash" from="Player" to="." method="_on_player_slash"]
-[connection signal="body_entered" from="Boss" to="." method="_on_boss_body_entered"]

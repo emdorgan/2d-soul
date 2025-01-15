@@ -1,13 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://1wn88jmbktnu"]
+[gd_scene load_steps=3 format=3 uid="uid://1wn88jmbktnu"]
 
+[ext_resource type="Script" path="res://boss.gd" id="1_jc0sm"]
 [ext_resource type="Texture2D" uid="uid://svsyjfnkwsid" path="res://graphics/boss.png" id="1_nlay3"]
 
-[node name="Boss" type="Area2D"]
+[node name="Boss" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
+script = ExtResource("1_jc0sm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_nlay3")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-127, -127, -128, 127, 127, 128, 129, -128)
+[node name="BossHurtBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="BossHurtBoxCollision" type="CollisionPolygon2D" parent="BossHurtBox"]
+polygon = PackedVector2Array(-129, -128, -128, 125, 127, 129, 128, -128)
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="PlayerDetectionCollision" type="CollisionPolygon2D" parent="PlayerDetection"]
+polygon = PackedVector2Array(-128, -126, -126, 128, 129, 128, 127, -128, 127, -128)
+
+[node name="BossCollision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-127, -125, -127, 125, 126, 126, 125, -127)
+
+[connection signal="area_entered" from="BossHurtBox" to="." method="_on_boss_hurt_box_area_entered"]
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]

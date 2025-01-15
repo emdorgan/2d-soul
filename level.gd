@@ -18,7 +18,3 @@ func _on_slash_tween_finished(sword):
 	sword.queue_free();
 	Global.is_attacking = false;
 	
-
-
-func _on_boss_body_entered(body: Node2D) -> void:
-	print('sword hit')
