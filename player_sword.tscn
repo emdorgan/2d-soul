@@ -1,22 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://kqo3dbwfl0f3"]
+[gd_scene load_steps=3 format=3 uid="uid://kqo3dbwfl0f3"]
 
-[ext_resource type="Texture2D" uid="uid://cm1tfnb0jbh0j" path="res://graphics/player_sword.png" id="1_xis7c"]
+[ext_resource type="Texture2D" uid="uid://drjw54bykakox" path="res://graphics/weapons/hero sword.png" id="1_1v6rm"]
 
-[node name="PlayerSword" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ink4w"]
+radius = 3.87061
+height = 23.7891
+
+[node name="PlayerSword" type="Area2D"]
 position = Vector2(526, 605)
-scale = Vector2(1.01185, 1.00733)
+rotation = 0.0165983
+scale = Vector2(1.507, 1.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 24)
-texture = ExtResource("1_xis7c")
+position = Vector2(-0.220253, -13.3315)
+rotation = -0.785398
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_1v6rm")
 
-[node name="SwordHitBox" type="Area2D" parent="Sprite2D"]
-position = Vector2(0, -24)
-collision_layer = 4
-collision_mask = 2
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite2D/SwordHitBox"]
-position = Vector2(0, 24)
-polygon = PackedVector2Array(-6, -24, -6, 24, 6, 24, 6, -24)
-
-[connection signal="body_entered" from="Sprite2D/SwordHitBox" to="." method="_on_sword_hit_box_body_entered"]
+[node name="SwordHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-0.308369, -18.6636)
+scale = Vector2(1, 0.956355)
+shape = SubResource("CapsuleShape2D_ink4w")

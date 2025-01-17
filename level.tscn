@@ -3,17 +3,15 @@
 [ext_resource type="Script" path="res://level.gd" id="1_mxvcs"]
 [ext_resource type="PackedScene" uid="uid://1ymqq51h7ej5" path="res://player.tscn" id="1_qjxwr"]
 [ext_resource type="Script" path="res://player.gd" id="2_jju5g"]
+[ext_resource type="Texture2D" uid="uid://bxjkhtsnn43yn" path="res://graphics/BG.png" id="2_q3ysm"]
 [ext_resource type="PackedScene" uid="uid://1wn88jmbktnu" path="res://boss.tscn" id="3_vxxm0"]
-[ext_resource type="PackedScene" uid="uid://kqo3dbwfl0f3" path="res://player_sword.tscn" id="4_vhqh4"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_mxvcs")
 
-[node name="BG" type="ColorRect" parent="."]
-offset_right = 1151.0
-offset_bottom = 646.0
-color = Color(0.25939, 0.016055, 0.497672, 1)
-metadata/_edit_lock_ = true
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(626, 340)
+texture = ExtResource("2_q3ysm")
 
 [node name="Player" parent="." instance=ExtResource("1_qjxwr")]
 position = Vector2(535, 589)
@@ -21,11 +19,6 @@ script = ExtResource("2_jju5g")
 
 [node name="Boss" parent="." instance=ExtResource("3_vxxm0")]
 position = Vector2(904, 223)
-
-[node name="PlayerSword" parent="." instance=ExtResource("4_vhqh4")]
-position = Vector2(537, 680)
-
-[node name="Weapons" type="Node2D" parent="."]
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -46,4 +39,4 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 value = 50.0
 show_percentage = false
 
-[connection signal="slash" from="Player" to="." method="_on_player_slash"]
+[node name="Node2D" type="Node2D" parent="."]
