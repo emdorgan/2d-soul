@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbpybf4yqdgln"]
+[gd_scene load_steps=5 format=3 uid="uid://bbpybf4yqdgln"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_mxvcs"]
 [ext_resource type="PackedScene" uid="uid://1ymqq51h7ej5" path="res://player.tscn" id="1_qjxwr"]
-[ext_resource type="Script" path="res://player.gd" id="2_jju5g"]
 [ext_resource type="Texture2D" uid="uid://bxjkhtsnn43yn" path="res://graphics/BG.png" id="2_q3ysm"]
 [ext_resource type="PackedScene" uid="uid://1wn88jmbktnu" path="res://boss.tscn" id="3_vxxm0"]
 
@@ -14,8 +13,7 @@ position = Vector2(626, 340)
 texture = ExtResource("2_q3ysm")
 
 [node name="Player" parent="." instance=ExtResource("1_qjxwr")]
-position = Vector2(535, 589)
-script = ExtResource("2_jju5g")
+position = Vector2(800, 429)
 
 [node name="Boss" parent="." instance=ExtResource("3_vxxm0")]
 position = Vector2(904, 223)

@@ -10,6 +10,8 @@ height = 23.7891
 position = Vector2(526, 605)
 rotation = 0.0165983
 scale = Vector2(1.507, 1.5)
+collision_layer = 4
+collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.220253, -13.3315)
