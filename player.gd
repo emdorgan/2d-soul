@@ -22,17 +22,12 @@ func handle_input() -> void:
 		
 	direction = Vector2.ZERO
 	
-	if Input.is_action_pressed("Up"):
-		direction = Vector2.UP
-	elif Input.is_action_pressed("Down"):
-		direction = Vector2.DOWN
-	elif Input.is_action_pressed("Left"):
-		direction = Vector2.LEFT
-	elif Input.is_action_pressed("Right"):
-		direction = Vector2.RIGHT
+	var horizontal_input = Input.get_action_strength("Right") - Input.get_action_strength("Left")
+	var vertical_input = Input.get_action_strength("Down") - Input.get_action_strength("Up")
+	direction = Vector2(horizontal_input, vertical_input).normalized()
 	
 	if direction != Vector2.ZERO:
-		last_direction = direction
+		last_direction = round_direction(direction)
 
 
 func _physics_process(delta: float) -> void:
@@ -43,7 +38,13 @@ func _physics_process(delta: float) -> void:
 func move_character(delta: float) -> void:
 	velocity = direction * speed
 	move_and_slide()
-
+	
+func round_direction(dir: Vector2) -> Vector2:
+	if abs(dir.x) > abs(dir.y):
+		return Vector2(sign(dir.x), 0)
+	else:
+		return Vector2(0, sign(dir.y))
+		
 func update_animation() -> void:
 	if direction != Vector2.ZERO:
 		match last_direction:

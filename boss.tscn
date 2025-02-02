@@ -8,24 +8,27 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_jc0sm")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_nlay3")
+[node name="BossCollision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-65, -63, -66, 60, 64, 62, 63, -63)
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+position = Vector2(1.49012e-08, 7.62939e-06)
+collision_layer = 2
+
+[node name="PlayerDetectionCollision" type="CollisionPolygon2D" parent="PlayerDetection"]
+polygon = PackedVector2Array(-66, -63, -65, 64, 67, 64, 63, -63)
 
 [node name="BossHurtBox" type="Area2D" parent="."]
+position = Vector2(1.49012e-08, 7.62939e-06)
 collision_layer = 2
 collision_mask = 4
 
 [node name="BossHurtBoxCollision" type="CollisionPolygon2D" parent="BossHurtBox"]
-polygon = PackedVector2Array(-129, -128, -128, 125, 127, 129, 128, -128)
+polygon = PackedVector2Array(-64, -63, -64, 64, 64, 63, 64, -65)
 
-[node name="PlayerDetection" type="Area2D" parent="."]
-collision_layer = 2
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_nlay3")
 
-[node name="PlayerDetectionCollision" type="CollisionPolygon2D" parent="PlayerDetection"]
-polygon = PackedVector2Array(-128, -126, -126, 128, 129, 128, 127, -128, 127, -128)
-
-[node name="BossCollision" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-127, -125, -127, 125, 126, 126, 125, -127)
-
-[connection signal="area_entered" from="BossHurtBox" to="." method="_on_boss_hurt_box_area_entered"]
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="area_entered" from="BossHurtBox" to="." method="_on_boss_hurt_box_area_entered"]

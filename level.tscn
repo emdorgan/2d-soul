@@ -1,9 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbpybf4yqdgln"]
+[gd_scene load_steps=9 format=3 uid="uid://bbpybf4yqdgln"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_mxvcs"]
 [ext_resource type="PackedScene" uid="uid://1ymqq51h7ej5" path="res://player.tscn" id="1_qjxwr"]
 [ext_resource type="Texture2D" uid="uid://bxjkhtsnn43yn" path="res://graphics/BG.png" id="2_q3ysm"]
 [ext_resource type="PackedScene" uid="uid://1wn88jmbktnu" path="res://boss.tscn" id="3_vxxm0"]
+[ext_resource type="Script" path="res://boss_path_follow.gd" id="4_4y3a6"]
+
+[sub_resource type="Curve2D" id="Curve2D_3wi1o"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 574, 130, 0, 0, 0, 0, 100, 140, 0, 0, 0, 0, 574, 83, 0, 0, 0, 0, 1042, 126, 0, 0, 0, 0, 574, 130)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_v5ufr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 573, 131, 0, 0, 0, 0, 185, 283, 0, 0, 0, 0, 389, 393, 0, 0, 0, 0, 440, 519, 0, 0, 0, 0, 463, 550, 0, 0, 0, 0, 572, 129)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_66vp1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 576, 129, 0, 0, 0, 0, 868, 230, 0, 0, 0, 0, 889, 324, 0, 0, 0, 0, 911, 422, 0, 0, 0, 0, 761, 513, 0, 0, 0, 0, 636, 487, 0, 0, 0, 0, 588, 366, 0, 0, 0, 0, 602, 220, 0, 0, 0, 0, 576, 133)
+}
+point_count = 9
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_mxvcs")
@@ -13,10 +32,8 @@ position = Vector2(626, 340)
 texture = ExtResource("2_q3ysm")
 
 [node name="Player" parent="." instance=ExtResource("1_qjxwr")]
-position = Vector2(800, 429)
-
-[node name="Boss" parent="." instance=ExtResource("3_vxxm0")]
-position = Vector2(904, 223)
+position = Vector2(549, 554)
+speed = 400.0
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -38,3 +55,21 @@ value = 50.0
 show_percentage = false
 
 [node name="Node2D" type="Node2D" parent="."]
+
+[node name="BossPath1" type="Path2D" parent="."]
+curve = SubResource("Curve2D_3wi1o")
+
+[node name="BossPathFollow" type="PathFollow2D" parent="BossPath1" node_paths=PackedStringArray("paths")]
+position = Vector2(574, 130)
+rotation = 3.1205
+script = ExtResource("4_4y3a6")
+paths = [NodePath(".."), NodePath("../../BossPath2"), NodePath("../../BossPath3")]
+
+[node name="Boss" parent="BossPath1/BossPathFollow" instance=ExtResource("3_vxxm0")]
+position = Vector2(-0.999878, -0.0147705)
+
+[node name="BossPath2" type="Path2D" parent="."]
+curve = SubResource("Curve2D_v5ufr")
+
+[node name="BossPath3" type="Path2D" parent="."]
+curve = SubResource("Curve2D_66vp1")
