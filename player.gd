@@ -1,6 +1,10 @@
 extends CharacterBody2D
 
 @export var speed: float = 300.0
+@export var dash_speed: float = 900.0
+@export var dash_duration: float = 0.2
+@export var dash_cooldown: float = 0.3
+
 @onready var character_sprite: AnimatedSprite2D = $CharacterAnimation
 @onready var character_animation: AnimationPlayer = $AnimationPlayer
 
@@ -10,6 +14,9 @@ var active_weapon : Area2D;
 var direction := Vector2.ZERO
 var last_direction := Vector2.DOWN
 var can_attack := true
+var is_dashing := false
+var dash_timer := 0.0
+var dash_cooldown_timer := 0.0
 
 func handle_input() -> void:
 	if Input.is_action_just_pressed("Slash") and can_attack:  
@@ -19,6 +26,9 @@ func handle_input() -> void:
 		active_weapon.position = Vector2(0,0)
 		$AttackTimer.start()
 		play_attack_animation()
+		
+	if Input.is_action_just_pressed("Dash") and not is_dashing and dash_cooldown_timer <= 0:
+		start_dash()
 		
 	direction = Vector2.ZERO
 	
@@ -32,12 +42,29 @@ func handle_input() -> void:
 
 func _physics_process(delta: float) -> void:
 	handle_input()
+	
+	if is_dashing:
+		dash_timer -= delta
+		if dash_timer <= 0:
+			is_dashing = false
+			dash_cooldown_timer = dash_cooldown  # Start cooldown after dash ends
+	elif dash_cooldown_timer > 0:
+		dash_cooldown_timer -= delta
+	
 	move_character(delta)
 	update_animation()
 
 func move_character(delta: float) -> void:
-	velocity = direction * speed
+	print("velocity: ",velocity)
+	if is_dashing:
+		velocity = direction * dash_speed
+	else:
+		velocity = direction * speed
 	move_and_slide()
+	
+func start_dash() -> void:
+	is_dashing = true
+	dash_timer = dash_duration
 	
 func round_direction(dir: Vector2) -> Vector2:
 	if abs(dir.x) > abs(dir.y):

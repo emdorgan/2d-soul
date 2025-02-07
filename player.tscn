@@ -134,6 +134,26 @@ region = Rect2(216, 216, 72, 72)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vc0re"]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"dash_down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"dash_left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"dash_right",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"dash_up",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bvq15")
@@ -434,7 +454,7 @@ script = ExtResource("1_ec13v")
 
 [node name="CharacterAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vc0re")
-animation = &"idle_left"
+animation = &"dash_up"
 
 [node name="CharacterHurtbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 11)
